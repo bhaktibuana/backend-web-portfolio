@@ -21,6 +21,6 @@ const dbConfig = (database) => {
   );
 };
 
-const db = dbConfig(procenss.env.DB_NAME);
+const db = dbConfig(process.env.DB_NAME);
 
 module.exports = db;
