@@ -1,5 +1,6 @@
 const roleModel = require("./userManagement/role.model");
 const userModel = require("./userManagement/user.model");
+const skillsModel = require("./skillsManagement/skills.model");
 
 /* ASSOCIATIONS BEGIN */
 
@@ -11,4 +12,5 @@ userModel.User.belongsTo(roleModel.Role, {
 module.exports = {
   roleModel,
   userModel,
+  skillsModel,
 };
