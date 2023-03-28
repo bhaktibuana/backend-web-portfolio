@@ -32,6 +32,11 @@ const getData = (req, res) => {
     .catch((error) => connectionError(error, res));
 };
 
+const getSelfData = (req, res) => {
+  const payload = res.locals.tokenPayload;
+  response("User data", 200, payload, res);
+};
+
 const login = (req, res) => {
   const { usernameEmail, password } = res.locals.params;
 
@@ -106,6 +111,7 @@ const changePassword = (req, res) => {
 
 module.exports = {
   getData,
+  getSelfData,
   login,
   changePassword,
 };
