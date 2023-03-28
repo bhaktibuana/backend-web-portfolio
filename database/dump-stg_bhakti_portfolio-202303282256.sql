@@ -41,6 +41,37 @@ INSERT INTO `role` VALUES ('RL-230327-01de69-000002','USR','User'),('RL-230327-4
 UNLOCK TABLES;
 
 --
+-- Table structure for table `skills`
+--
+
+DROP TABLE IF EXISTS `skills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `skills` (
+  `id` varchar(100) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `source_link` varchar(255) NOT NULL,
+  `order` int NOT NULL,
+  `created_at` datetime NOT NULL,
+  `created_by` varchar(100) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `updated_by` varchar(100) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `skills`
+--
+
+LOCK TABLES `skills` WRITE;
+/*!40000 ALTER TABLE `skills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `skills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -88,4 +119,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-28 22:10:49
+-- Dump completed on 2023-03-28 22:56:31
