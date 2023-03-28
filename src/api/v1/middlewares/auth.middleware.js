@@ -30,6 +30,22 @@ const isAuth = (req, res, next) => {
   }
 };
 
+const isAdmin = (req, res, next) => {
+  const { role } = res.locals.tokenPayload;
+
+  if (role.code === "SA") {
+    next();
+  } else {
+    response(
+      "Access forbiden",
+      403,
+      { message: "Only super admin can access" },
+      res
+    );
+  }
+};
+
 module.exports = {
   isAuth,
+  isAdmin,
 };
