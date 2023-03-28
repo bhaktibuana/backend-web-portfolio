@@ -27,6 +27,87 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{user_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{user_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usernameEmail\": \"bhaktimb\",\r\n    \"password\": \"1pV7DJcm2W@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{user_url}}/login",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{user_url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change password",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0yMzAzMjctZGVmZTU0LTAwMDAwMSIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0yMzAzMjctNGQxYzZhLTAwMDAwMSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjc5OTkzNjk5LCJleHAiOjE2ODA1OTg0OTl9.IgW06ye3DK5NtfPBFyt2Soqpr9Qdb11gH6MAHAgoHH4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"oldPassword\": \"1pV7DJcm2W\",\r\n    \"newPassword\": \"1pV7DJcm2W@\",\r\n    \"newPasswordConf\": \"1pV7DJcm2W@\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{user_url}}/changePassword",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{user_url}}"
+									],
+									"path": [
+										"changePassword"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -84,6 +165,11 @@
 		{
 			"key": "role_url",
 			"value": "/role",
+			"type": "string"
+		},
+		{
+			"key": "user_url",
+			"value": "/user",
 			"type": "string"
 		}
 	]
