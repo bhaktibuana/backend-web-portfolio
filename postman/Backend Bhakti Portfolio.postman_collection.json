@@ -68,9 +68,6 @@
 						{
 							"name": "change password",
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -200,7 +197,7 @@
 			"name": "Skills Management",
 			"item": [
 				{
-					"name": "Skills (User)",
+					"name": "Skills (Guest)",
 					"item": [
 						{
 							"name": "get data",
@@ -226,10 +223,46 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"JavaScript\",\r\n    \"image_path\": \"/images/20230329-223150-banana_1.jpg\",\r\n    \"source_link\": \"https://www.javascript.com\",\r\n    \"order\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{base_url}}{{api_v1_route}}{{skills_url}}",
 									"host": [
 										"{{base_url}}{{api_v1_route}}{{skills_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "upload image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ACER/OneDrive/Desktop/banana-1.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{skills_url}}/uploadImage",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{skills_url}}"
+									],
+									"path": [
+										"uploadImage"
 									]
 								}
 							},
@@ -312,7 +345,7 @@
 		},
 		{
 			"key": "access_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0yMzAzMjctZGVmZTU0LTAwMDAwMSIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0yMzAzMjctNGQxYzZhLTAwMDAwMSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgwMDYwODI4LCJleHAiOjE2ODA2NjU2Mjh9.3cIn3W6HjtiKKFxe_II68yU0YByr-FUp3nG0pj4kU5c",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgwMDkxMjAwLCJleHAiOjE2ODA2OTYwMDB9.vA6SyJmo3gqv9PAxujg0XKOMNy5ZckkL6VWAGjfFD64",
 			"type": "string"
 		},
 		{
