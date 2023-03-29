@@ -16,7 +16,7 @@ const dbConfig = (database) => {
     {
       host: dbParams.host,
       dialect: "mysql",
-      logging: console.log,
+      logging: false,
     }
   );
 };
