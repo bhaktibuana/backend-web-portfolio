@@ -1,7 +1,7 @@
 const yup = require("yup");
 const { response } = require("../../utils");
 
-const loginValidation = (req, res, next) => {
+const loginValidation = async (req, res, next) => {
   const { usernameEmail, password } = req.body;
 
   const data = {
@@ -14,16 +14,16 @@ const loginValidation = (req, res, next) => {
     password: yup.string().required(),
   });
 
-  schema
-    .validate(data, { abortEarly: false })
-    .then(() => {
-      res.locals.params = data;
-      next();
-    })
-    .catch((error) => response("Invalid login data", 400, error.errors, res));
+  try {
+    await schema.validate(data, { abortEarly: false });
+    res.locals.params = data;
+    next();
+  } catch (error) {
+    response("Invalid login data", 400, error.errors, res);
+  }
 };
 
-const changePasswordValidation = (req, res, next) => {
+const changePasswordValidation = async (req, res, next) => {
   const { oldPassword, newPassword, newPasswordConf } = req.body;
 
   const data = {
@@ -46,15 +46,13 @@ const changePasswordValidation = (req, res, next) => {
       .required(),
   });
 
-  schema
-    .validate(data, { abortEarly: false })
-    .then(() => {
-      res.locals.params = data;
-      next();
-    })
-    .catch((error) =>
-      response("Invalid change password data", 400, error.errors, res)
-    );
+  try {
+    await schema.validate(data, { abortEarly: false });
+    res.locals.params = data;
+    next();
+  } catch (error) {
+    response("Invalid change password data", 400, error.errors, res);
+  }
 };
 
 module.exports = {
