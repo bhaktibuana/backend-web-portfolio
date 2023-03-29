@@ -17,6 +17,13 @@ const getData = (req, res) => {
     .catch((error) => connectionError(error, res));
 };
 
+const createData = (req, res) => {
+  const id = generateId("skills", res.locals.incrementId);
+
+  response("Skills", 200, id, res);
+};
+
 module.exports = {
   getData,
+  createData,
 };
