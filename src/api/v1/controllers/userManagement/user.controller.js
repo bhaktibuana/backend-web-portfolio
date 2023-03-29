@@ -10,74 +10,84 @@ const {
 const { User, Op } = userModel;
 const { Role } = roleModel;
 
-const getData = (req, res) => {
-  User.findAll({
-    include: [
-      {
-        model: Role,
-        required: true,
+const getData = async (req, res) => {
+  try {
+    const userResult = await User.findAll({
+      include: [
+        {
+          model: Role,
+          required: true,
+        },
+      ],
+      attributes: {
+        exclude: ["password", "role_id"],
       },
-    ],
-    attributes: {
-      exclude: ["password", "role_id"],
-    },
-  })
-    .then((results) => {
-      if (results.length) {
-        response("User data", 200, results, res);
-      } else {
-        response("User not found", 404, null, res);
-      }
-    })
-    .catch((error) => connectionError(error, res));
+    });
+
+    if (userResult.length) {
+      response("User data", 200, userResult, res);
+    } else {
+      response("User not found", 404, null, res);
+    }
+  } catch (error) {
+    connectionError(error, res);
+  }
 };
 
-const getSelfData = (req, res) => {
-  const payload = res.locals.tokenPayload;
-  response("User data", 200, payload, res);
+const getSelfData = async (req, res) => {
+  try {
+    const payload = await res.locals.tokenPayload;
+    response("User data", 200, payload, res);
+  } catch (error) {
+    connectionError(error, res);
+  }
 };
 
-const login = (req, res) => {
+const login = async (req, res) => {
   const { usernameEmail, password } = res.locals.params;
 
-  User.findOne({
-    where: {
-      [Op.or]: [{ username: usernameEmail }, { email: usernameEmail }],
-      password: hashPassword(password),
-    },
-    include: [
-      {
-        model: Role,
-        required: true,
+  try {
+    const userResult = await User.findOne({
+      where: {
+        [Op.or]: [{ username: usernameEmail }, { email: usernameEmail }],
+        password: hashPassword(password),
       },
-    ],
-    attributes: {
-      exclude: [
-        "password",
-        "created_at",
-        "created_by",
-        "updated_at",
-        "updated_by",
-        "role_id",
+      include: [
+        {
+          model: Role,
+          required: true,
+        },
       ],
-    },
-  }).then((results) => {
-    if (results) {
-      if (!results.dataValues.is_deleted) {
-        const token = generateJwt(results.dataValues);
-        delete results.dataValues.username;
-        delete results.dataValues.email;
-        response("Login success", 200, { results, token }, res);
+      attributes: {
+        exclude: [
+          "password",
+          "created_at",
+          "created_by",
+          "updated_at",
+          "updated_by",
+          "role_id",
+        ],
+      },
+    });
+
+    if (userResult) {
+      if (!userResult.dataValues.is_deleted) {
+        const token = generateJwt(userResult.dataValues);
+        delete userResult.dataValues.username;
+        delete userResult.dataValues.email;
+        response("Login success", 200, { userResult, token }, res);
       } else {
         response("Your account is currently inactive", 400, null, res);
       }
     } else {
       response("Incorrect username or password", 404, null, res);
     }
-  });
+  } catch (error) {
+    connectionError(error, res);
+  }
 };
 
-const changePassword = (req, res) => {
+const changePassword = async (req, res) => {
   const { newPassword } = res.locals.params;
   const { id, username, email } = res.locals.tokenPayload;
 
@@ -87,26 +97,32 @@ const changePassword = (req, res) => {
     updated_by: username,
   };
 
-  User.update(payload, { where: { id }, returning: true, plain: true })
-    .then((results) => {
-      results.splice(results.indexOf(undefined), 1);
-      if (results.length) {
-        response(
-          "Reset password success",
-          201,
-          {
-            id,
-            username,
-            email,
-            password: newPassword,
-          },
-          res
-        );
-      } else {
-        response("Failed to change password", 400, null, res);
-      }
-    })
-    .catch((error) => connectionError(error, res));
+  try {
+    const userResult = await User.update(payload, {
+      where: { id },
+      returning: true,
+      plain: true,
+    });
+
+    userResult.splice(userResult.indexOf(undefined), 1);
+
+    if (userResult.length) {
+      response(
+        "Reset password success",
+        201,
+        {
+          id,
+          username,
+          email,
+        },
+        res
+      );
+    } else {
+      response("Failed to change password", 400, null, res);
+    }
+  } catch (error) {
+    connectionError(error, res);
+  }
 };
 
 module.exports = {

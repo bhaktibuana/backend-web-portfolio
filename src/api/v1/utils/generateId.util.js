@@ -7,9 +7,9 @@ const generateId = (tabelName, increment) => {
   const date = moment().format("YYMMDD").toString();
 
   idArr.push(removeVowels(tabelName));
+  idArr.push(formatNumber(increment));
   idArr.push(date);
   idArr.push(timestampHash(getTimestamp));
-  idArr.push(formatNumber(increment));
 
   return idArr.join("-");
 };

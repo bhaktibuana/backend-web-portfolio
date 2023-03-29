@@ -1,10 +1,8 @@
-const express = require("express");
+const router = require("express").Router();
 const morgan = require("morgan");
 const { api } = require("./configs");
 const { logFormat, logOptions } = require("./utils").loggerUtil;
 const apiV1Routes = require("./api/v1/routes");
-
-const router = express.Router();
 
 /* API V1 */
 router.use(morgan(logFormat, logOptions()));
