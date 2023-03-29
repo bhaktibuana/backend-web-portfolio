@@ -5,9 +5,17 @@ const { authMiddleware, skillsMiddleware } = require("../../middlewares");
 router.get("/", skillsController.getData);
 
 router.post(
+  "/uploadImage",
+  authMiddleware.isAuth,
+  authMiddleware.isAdmin,
+  skillsController.uploadImage
+);
+
+router.post(
   "/",
   authMiddleware.isAuth,
   skillsMiddleware.checkIdIncrement,
+  skillsMiddleware.checkImageDimension,
   skillsController.createData
 );
 
