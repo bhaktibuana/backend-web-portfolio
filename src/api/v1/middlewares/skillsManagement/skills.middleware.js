@@ -33,11 +33,11 @@ const checkImageDimension = async (req, res, next) => {
 
   try {
     const dimensions = await sizeOf(imagePath);
-    if (dimensions.width <= 90 && dimensions.height <= 90) {
+    if (dimensions.width <= 48 && dimensions.height <= 48) {
       next();
     } else {
       removeFile(image_path);
-      response("Image dimensions should not exceed 90x90px", 400, null, res);
+      response("Image dimensions should not exceed 48x48px", 400, null, res);
     }
   } catch (error) {
     response("Error while reading the image", 500, null, res);
