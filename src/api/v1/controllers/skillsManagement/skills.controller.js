@@ -7,12 +7,23 @@ const { Skills } = skillsModel;
 
 const getData = async (req, res) => {
   try {
-    const skillsResult = await Skills.findAll({
+    const results = await Skills.findAll({
       order: [["order", "ASC"]],
     });
 
-    if (skillsResult.length) {
-      response("Skills data", 200, skillsResult, res);
+    if (results.length) {
+      const resultsData = results.map(({ dataValues }) => {
+        const image_path = `${req.protocol}://${req.get("host")}${
+          dataValues.image_path
+        }`;
+        
+        return {
+          ...dataValues,
+          image_path,
+        };
+      });
+
+      response("Skills data", 200, resultsData, res);
     } else {
       response("Skills data not found", 404, null, res);
     }
