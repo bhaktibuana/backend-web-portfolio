@@ -1,31 +1,52 @@
 const moment = require("moment");
-const { skillsModel } = require("../../models");
+const { profileImageModel } = require("../../models");
 const { connectionError, generateId, response } = require("../../utils");
 const { imageUploader } = require("../../services");
 
-const { Skills } = skillsModel;
+const { ProfileImage } = profileImageModel;
 
 const getData = async (req, res) => {
   try {
-    const results = await Skills.findAll({
-      order: [["order", "ASC"]],
-    });
+    const results = await ProfileImage.findAll();
 
     if (results.length) {
       const resultsData = results.map(({ dataValues }) => {
         const image_path = `${req.protocol}://${req.get("host")}${
           dataValues.image_path
         }`;
-        
+
         return {
           ...dataValues,
           image_path,
         };
       });
 
-      response("Skills data", 200, resultsData, res);
+      response("Profile image data", 200, resultsData, res);
     } else {
-      response("Skills data not found", 404, null, res);
+      response("Profile image data not found", 404, null, res);
+    }
+  } catch (error) {
+    connectionError(error, res);
+  }
+};
+
+const getActiveData = async (req, res) => {
+  try {
+    const results = await ProfileImage.findOne({ where: { inactive: false } });
+
+    if (results) {
+      const image_path = `${req.protocol}://${req.get("host")}${
+        results.dataValues.image_path
+      }`;
+      
+      const resultsData = {
+        ...results.dataValues,
+        image_path,
+      };
+
+      response("Profile image data", 200, resultsData, res);
+    } else {
+      response("Profile image data not found", 404, null, res);
     }
   } catch (error) {
     connectionError(error, res);
@@ -33,7 +54,7 @@ const getData = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  const { upload, payload } = await imageUploader("skills");
+  const { upload, payload } = await imageUploader("profile");
   upload(req, res, (error) => {
     if (!error) {
       response("Upload image success", 201, payload, res);
@@ -45,30 +66,27 @@ const uploadImage = async (req, res) => {
 
 const createData = async (req, res) => {
   const params = req.body;
-  const id = generateId("skills", res.locals.incrementId);
+  const id = generateId("profile image", res.locals.incrementId);
   const createdAt = moment().format("YYYY-MM-DD HH:mm:ss").toString();
   const createdBy = res.locals.tokenPayload.username;
 
   const payload = {
     id,
-    title: params.title,
     image_path: params.image_path,
-    source_link: params.source_link,
-    order: params.order,
     created_at: createdAt,
     created_by: createdBy,
     updated_at: createdAt,
     updated_by: createdBy,
-    is_deleted: false,
+    inactive: false,
   };
 
   try {
-    const skillsResult = await Skills.create(payload);
+    const results = await ProfileImage.create(payload);
 
-    if (skillsResult) {
-      response("Create skill success", 201, skillsResult, res);
+    if (results) {
+      response("Create profile image success", 201, results, res);
     } else {
-      response("Create skill failed", 400, null, res);
+      response("Create rpfoile image failed", 400, null, res);
     }
   } catch (error) {
     connectionError(error, res);
@@ -77,6 +95,7 @@ const createData = async (req, res) => {
 
 module.exports = {
   getData,
+  getActiveData,
   uploadImage,
   createData,
 };

@@ -252,7 +252,7 @@
 										{
 											"key": "image",
 											"type": "file",
-											"src": "/C:/Users/ACER/OneDrive/Desktop/ReactQuery.png"
+											"src": "/C:/Users/ACER/OneDrive/Desktop/1248279.jpg"
 										}
 									]
 								},
@@ -303,6 +303,313 @@
 			]
 		},
 		{
+			"name": "About Management",
+			"item": [
+				{
+					"name": "Profile Image (Admin)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image_path\": \"/images/profile/20230513-202940-1248279.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "upload image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ACER/OneDrive/Desktop/1248279.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}/uploadImage",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									],
+									"path": [
+										"uploadImage"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Profile Image (Guest)",
+					"item": [
+						{
+							"name": "get active data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}/getActiveData",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									],
+									"path": [
+										"getActiveData"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "About (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{about_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{about_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "About (Admin)",
+					"item": [
+						{
+							"name": "update data",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et delectus nihil aut quas possimus odio sint at? Quia, deleniti corrupti, debitis ea neque suscipit distinctio facilis doloremque fuga ipsa eius.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{about_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{about_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Resume (Admin)",
+					"item": [
+						{
+							"name": "upload file",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "application",
+											"type": "file",
+											"src": "/C:/Users/ACER/OneDrive/Desktop/[CV-ATS] Bhakti Mega Buana (English).pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{resume_url}}/uploadFile",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{resume_url}}"
+									],
+									"path": [
+										"uploadFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"file_path\": \"/applications/resume/20230514-004547-_CV_ATS__Bhakti_Mega_Buana__English_.pdf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{resume_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{resume_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Resume (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{resume_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{resume_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "index",
 			"request": {
 				"method": "GET",
@@ -345,7 +652,7 @@
 		},
 		{
 			"key": "access_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgyNTk4MjUwLCJleHAiOjE2ODMyMDMwNTB9.RjWJlexiew2FPC9m1E0z7lqQjZ-6LnFElsNiOhk-SGg",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgzOTc3NzIxLCJleHAiOjE2ODQ1ODI1MjF9.srmAutYQMyOewFovBQhyTOmVJ7e3ERE2HlHMfe2gKOo",
 			"type": "string"
 		},
 		{
@@ -366,6 +673,21 @@
 		{
 			"key": "skills_url",
 			"value": "/skills",
+			"type": "string"
+		},
+		{
+			"key": "profile_image_url",
+			"value": "/profileImage",
+			"type": "string"
+		},
+		{
+			"key": "about_url",
+			"value": "/about",
+			"type": "string"
+		},
+		{
+			"key": "resume_url",
+			"value": "/resume",
 			"type": "string"
 		}
 	]
