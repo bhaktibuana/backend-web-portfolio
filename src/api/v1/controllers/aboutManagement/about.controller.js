@@ -39,7 +39,7 @@ const updateData = async (req, res) => {
     results.splice(results.indexOf(undefined), 1);
 
     if (results.length) {
-      response("Update about data success", 201, results, res);
+      response("Update about data success", 200, results, res);
     } else {
       response("Failed to update about data", 400, null, res);
     }

@@ -18,4 +18,10 @@ router.use("/about", aboutRoute);
 const resumeRoute = require("./aboutManagement/resume.route");
 router.use("/resume", resumeRoute);
 
+const jobTypeRoute = require("./experienceManagement/jobType.route");
+router.use("/jobType", jobTypeRoute);
+
+const experienceRoute = require("./experienceManagement/experience.route");
+router.use("/experience", experienceRoute);
+
 module.exports = router;

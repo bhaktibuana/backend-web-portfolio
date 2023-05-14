@@ -4,6 +4,8 @@ const skillsController = require("./skillsManagement/skills.controller");
 const profileImageController = require("./aboutManagement/profileImage.controller");
 const aboutController = require("./aboutManagement/about.controller");
 const resumeController = require("./aboutManagement/resume.controller");
+const jobTypeController = require("./experienceManagement/jobType.controller");
+const experienceController = require("./experienceManagement/experience.controller");
 
 module.exports = {
   roleController,
@@ -12,4 +14,6 @@ module.exports = {
   profileImageController,
   aboutController,
   resumeController,
+  jobTypeController,
+  experienceController,
 };

@@ -610,6 +610,194 @@
 			]
 		},
 		{
+			"name": "Experience Management",
+			"item": [
+				{
+					"name": "Job Type (Admin)",
+					"item": [
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Internship\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{job_type_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{job_type_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Job Type (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{job_type_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{job_type_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Experience (Admin)",
+					"item": [
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company\": \"PT Acset Indonusa Tbk\",\r\n    \"job_title\": \"Full-Stack Developer\",\r\n    \"start_date\": \"06-07-2022\",\r\n    \"end_date\": null,\r\n    \"job_type_id\": \"JBTYP-000002-230514-91c087\",\r\n    \"present\": true,\r\n    \"description\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{experience_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{experience_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update data",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company\": \"PT Acset Indonusa Tbk\",\r\n    \"job_title\": \"Full-Stack Developer\",\r\n    \"start_date\": \"06-07-2022\",\r\n    \"end_date\": null,\r\n    \"job_type_id\": \"JBTYP-000002-230514-91c087\",\r\n    \"present\": true,\r\n    \"description\": \"Have a role as a full-stack developer who has the responsibility to develop and maintain either on the front-end, back-end, database and web server side.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{experience_url}}?id=EPRNC-000002-230514-f9a15e",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{experience_url}}"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "EPRNC-000002-230514-f9a15e"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Experience (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{experience_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{experience_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "index",
 			"request": {
 				"method": "GET",
@@ -652,7 +840,7 @@
 		},
 		{
 			"key": "access_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgzOTc3NzIxLCJleHAiOjE2ODQ1ODI1MjF9.srmAutYQMyOewFovBQhyTOmVJ7e3ERE2HlHMfe2gKOo",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjg0MDU1MTkyLCJleHAiOjE2ODQ2NTk5OTJ9.azPQ0BScjyoP6_uz8h-dKso2SiQD97d25DDODMvOt-E",
 			"type": "string"
 		},
 		{
@@ -688,6 +876,16 @@
 		{
 			"key": "resume_url",
 			"value": "/resume",
+			"type": "string"
+		},
+		{
+			"key": "job_type_url",
+			"value": "/jobType",
+			"type": "string"
+		},
+		{
+			"key": "experience_url",
+			"value": "/experience",
 			"type": "string"
 		}
 	]
