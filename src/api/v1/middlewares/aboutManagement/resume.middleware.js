@@ -27,7 +27,7 @@ const checkIdIncrement = async (req, res, next) => {
 
 const checkFileType = (req, res, next) => {
   const { file_path } = req.body;
-  const appDir = path.dirname(require.main.filename);
+  const appDir = process.cwd();
   const filePath = path.join(`${appDir}/public`, file_path);
 
   try {

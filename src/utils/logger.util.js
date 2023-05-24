@@ -24,7 +24,7 @@ const logFormat = (tokens, req, res) => {
 
 const logOptions = () => {
   const date = moment().format("YYYYMMDD").toString();
-  const appDir = path.dirname(require.main.filename);
+  const appDir = process.cwd();
   const logDir = path.join(appDir, "./logs");
 
   if (!fs.existsSync(logDir)) {

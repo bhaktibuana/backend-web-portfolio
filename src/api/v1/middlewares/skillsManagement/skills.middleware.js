@@ -28,7 +28,7 @@ const checkIdIncrement = async (req, res, next) => {
 
 const checkImageDimension = async (req, res, next) => {
   const { image_path } = req.body;
-  const appDir = path.dirname(require.main.filename);
+  const appDir = process.cwd();
   const imagePath = path.join(`${appDir}/public`, image_path);
 
   try {
