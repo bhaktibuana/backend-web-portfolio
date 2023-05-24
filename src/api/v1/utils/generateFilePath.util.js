@@ -10,7 +10,7 @@ const targetFilePath = (fileType, folderName, fileName) => {
 };
 
 const uploadFilePath = (fileType, folderName) => {
-  const appDir = path.dirname(require.main.filename);
+  const appDir = process.cwd();
   const baseDir = path.join(appDir, `./public/${fileType}s`);
   const fileDir = path.join(baseDir, `./${folderName}`);
 
