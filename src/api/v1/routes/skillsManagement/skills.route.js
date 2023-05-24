@@ -14,6 +14,7 @@ router.post(
 router.post(
   "/",
   authMiddleware.isAuth,
+  authMiddleware.isAdmin,
   skillsMiddleware.checkIdIncrement,
   skillsMiddleware.checkImageDimension,
   skillsController.createData

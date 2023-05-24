@@ -225,7 +225,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"JavaScript\",\r\n    \"image_path\": \"/images/20230329-223150-banana_1.jpg\",\r\n    \"source_link\": \"https://www.javascript.com\",\r\n    \"order\": 1\r\n}",
+									"raw": "{\r\n    \"title\": \"React Native\",\r\n    \"image_path\": \"/images/20230427-211856-ReactNative.png\",\r\n    \"source_link\": \"https://reactnative.dev\",\r\n    \"order\": 30\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -252,7 +252,7 @@
 										{
 											"key": "image",
 											"type": "file",
-											"src": "/C:/Users/ACER/OneDrive/Desktop/banana-1.jpg"
+											"src": "/C:/Users/ACER/OneDrive/Desktop/1248279.jpg"
 										}
 									]
 								},
@@ -274,7 +274,7 @@
 						"bearer": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0yMzAzMjctZGVmZTU0LTAwMDAwMSIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0yMzAzMjctNGQxYzZhLTAwMDAwMSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgwMDYwODI4LCJleHAiOjE2ODA2NjU2Mjh9.3cIn3W6HjtiKKFxe_II68yU0YByr-FUp3nG0pj4kU5c",
+								"value": "{{access_token}}",
 								"type": "string"
 							}
 						]
@@ -297,6 +297,501 @@
 									""
 								]
 							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "About Management",
+			"item": [
+				{
+					"name": "Profile Image (Admin)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"image_path\": \"/images/profile/20230513-202940-1248279.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "upload image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/ACER/OneDrive/Desktop/1248279.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}/uploadImage",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									],
+									"path": [
+										"uploadImage"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Profile Image (Guest)",
+					"item": [
+						{
+							"name": "get active data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{profile_image_url}}/getActiveData",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{profile_image_url}}"
+									],
+									"path": [
+										"getActiveData"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "About (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{about_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{about_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "About (Admin)",
+					"item": [
+						{
+							"name": "update data",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et delectus nihil aut quas possimus odio sint at? Quia, deleniti corrupti, debitis ea neque suscipit distinctio facilis doloremque fuga ipsa eius.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{about_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{about_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Resume (Admin)",
+					"item": [
+						{
+							"name": "upload file",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "application",
+											"type": "file",
+											"src": "/C:/Users/ACER/OneDrive/Desktop/[CV-ATS] Bhakti Mega Buana (English).pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{resume_url}}/uploadFile",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{resume_url}}"
+									],
+									"path": [
+										"uploadFile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"file_path\": \"/applications/resume/20230514-004547-_CV_ATS__Bhakti_Mega_Buana__English_.pdf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{resume_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{resume_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Resume (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{resume_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{resume_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Experience Management",
+			"item": [
+				{
+					"name": "Job Type (Admin)",
+					"item": [
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Internship\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{job_type_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{job_type_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Job Type (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{job_type_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{job_type_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Experience (Admin)",
+					"item": [
+						{
+							"name": "create data",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company\": \"PT Acset Indonusa Tbk\",\r\n    \"job_title\": \"Full-Stack Developer\",\r\n    \"start_date\": \"06-07-2022\",\r\n    \"end_date\": null,\r\n    \"job_type_id\": \"JBTYP-000002-230514-91c087\",\r\n    \"present\": true,\r\n    \"description\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{experience_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{experience_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update data",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company\": \"PT Acset Indonusa Tbk\",\r\n    \"job_title\": \"Full-Stack Developer\",\r\n    \"start_date\": \"06-07-2022\",\r\n    \"end_date\": null,\r\n    \"job_type_id\": \"JBTYP-000002-230514-91c087\",\r\n    \"present\": true,\r\n    \"description\": \"Have a role as a full-stack developer who has the responsibility to develop and maintain either on the front-end, back-end, database and web server side.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{experience_url}}?id=EPRNC-000002-230514-f9a15e",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{experience_url}}"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "EPRNC-000002-230514-f9a15e"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{access_token}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Experience (Guest)",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}{{api_v1_route}}{{experience_url}}",
+									"host": [
+										"{{base_url}}{{api_v1_route}}{{experience_url}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -340,12 +835,12 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:3000",
+			"value": "http://localhost:3001",
 			"type": "string"
 		},
 		{
 			"key": "access_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjgwMDkxMjAwLCJleHAiOjE2ODA2OTYwMDB9.vA6SyJmo3gqv9PAxujg0XKOMNy5ZckkL6VWAGjfFD64",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlVTUi0wMDAwMDEtMjMwMzI3LWRlZmU1NCIsIm5hbWUiOiJCaGFrdGkgTWVnYSBCdWFuYSIsInVzZXJuYW1lIjoiYmhha3RpbWIiLCJlbWFpbCI6ImJoYWt0aWJ1YW5hMTlAZ21haWwuY29tIiwiaXNfZGVsZXRlZCI6ZmFsc2UsInJvbGUiOnsiaWQiOiJSTC0wMDAwMDEtMjMwMzI3LTRkMWM2YSIsImNvZGUiOiJTQSIsImRlc2NyaXB0aW9uIjoiU3VwZXIgQWRtaW4ifSwiaWF0IjoxNjg0MDU1MTkyLCJleHAiOjE2ODQ2NTk5OTJ9.azPQ0BScjyoP6_uz8h-dKso2SiQD97d25DDODMvOt-E",
 			"type": "string"
 		},
 		{
@@ -366,6 +861,31 @@
 		{
 			"key": "skills_url",
 			"value": "/skills",
+			"type": "string"
+		},
+		{
+			"key": "profile_image_url",
+			"value": "/profileImage",
+			"type": "string"
+		},
+		{
+			"key": "about_url",
+			"value": "/about",
+			"type": "string"
+		},
+		{
+			"key": "resume_url",
+			"value": "/resume",
+			"type": "string"
+		},
+		{
+			"key": "job_type_url",
+			"value": "/jobType",
+			"type": "string"
+		},
+		{
+			"key": "experience_url",
+			"value": "/experience",
 			"type": "string"
 		}
 	]

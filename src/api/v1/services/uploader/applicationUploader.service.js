@@ -3,7 +3,7 @@ const { generateFileName, generateFilePath } = require("../../utils");
 
 const { uploadFilePath, targetFilePath } = generateFilePath;
 
-const imageUploader = async (folderName) => {
+const applicationUpploader = async (folderName) => {
   const payload = {
     fileName: null,
     mimeType: null,
@@ -12,7 +12,7 @@ const imageUploader = async (folderName) => {
 
   const fileFilter = (req, file, cb) => {
     const fileType = file.mimetype.split("/")[0];
-    if (fileType === "image") {
+    if (fileType === "application") {
       payload.mimeType = file.mimetype;
       cb(null, true);
     } else {
@@ -36,8 +36,8 @@ const imageUploader = async (folderName) => {
     },
   });
 
-  const upload = multer({ storage, fileFilter }).single("image");
+  const upload = multer({ storage, fileFilter }).single("application");
   return { upload, payload };
 };
 
-module.exports = imageUploader;
+module.exports = applicationUpploader;

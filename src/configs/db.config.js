@@ -16,7 +16,7 @@ const dbConfig = (database) => {
     {
       host: dbParams.host,
       dialect: "mysql",
-      logging: false,
+      logging: process.env.NODE_ENV === "production" ? false : console.log,
     }
   );
 };

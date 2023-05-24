@@ -1,21 +1,21 @@
 const path = require("path");
 const fs = require("fs");
 
-const targetFilePath = (fileType, fileName) => {
+const targetFilePath = (fileType, folderName, fileName) => {
   const filePath = path
-    .join(`./${fileType}s`, `./${fileName}`)
+    .join(`./${fileType}s/${folderName}`, `./${fileName}`)
     .split("\\")
     .join("/");
   return `/${filePath}`;
 };
 
-const uploadFilePath = (fileType) => {
+const uploadFilePath = (fileType, folderName) => {
   const appDir = path.dirname(require.main.filename);
-  const fileDir = path.join(appDir, `./public/${fileType}s`);
+  const baseDir = path.join(appDir, `./public/${fileType}s`);
+  const fileDir = path.join(baseDir, `./${folderName}`);
 
-  if (!fs.existsSync(fileDir)) {
-    fs.mkdirSync(fileDir);
-  }
+  if (!fs.existsSync(baseDir)) fs.mkdirSync(baseDir);
+  if (!fs.existsSync(fileDir)) fs.mkdirSync(fileDir);
 
   return fileDir;
 };
